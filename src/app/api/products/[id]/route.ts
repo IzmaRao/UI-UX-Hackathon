@@ -20,13 +20,27 @@ const products = [
 ];
 
 export async function GET(request: NextRequest, context: { params: Promise<{ id: string }> }) {
-    const { id } = await context.params; // Await the params
-    const productsId = parseInt(id, 10);
-    const product = products.find((p) => p.id === productsId);
+    try {
+        const { id } = await context.params; // Await the params
+        const productsId = parseInt(id, 10);
 
-    if (!product) {
-        return NextResponse.json({ error: 'Product not found' }, { status: 404 });
+        // Check if the parsed ID is a valid number
+        if (isNaN(productsId)) {
+            return NextResponse.json({ error: 'Invalid product ID' }, { status: 400 });
+        }
+
+        // Find the product by ID
+        const product = products.find((p) => p.id === productsId);
+
+        // If the product is not found, return a 404 response
+        if (!product) {
+            return NextResponse.json({ error: 'Product not found' }, { status: 404 });
+        }
+
+        // Return the product data
+        return NextResponse.json(product);
+    } catch (error) {
+        console.error("Error fetching product:", error);
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
-
-    return NextResponse.json(product);
 }
