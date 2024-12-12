@@ -1,43 +1,41 @@
-import React from 'react'
+import React from 'react';
 import Navbar from '@/components/Navbar';
-import Image,{ StaticImageData } from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { FaGreaterThan } from "react-icons/fa6";
-import stars from '../../../../public/Group 88.png'
-import { FaFacebook } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
+import stars from '../../../../public/Group 88.png';
+import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import soffa1 from '../../../../public/Cloud sofa three seater + ottoman_2 1.png';
 import soffa2 from '../../../../public/Cloud sofa three seater + ottoman_1 1.png';
-import Realtedproducts from '../../../components/Relatedproducts'
+import Relatedproducts from '../../../components/Relatedproducts';
 
 type Data = {
-    id: number,
-    name: string,
-    price: number,
-    image: StaticImageData,
-    width: number,
-    height: number,
+    id: number;
+    name: string;
+    price: number;
+    image: StaticImageData;
+    width: number;
+    height: number;
     detailimg: {
-        img1: StaticImageData,
-        img2: StaticImageData,
-        img3: StaticImageData,
-        img4: StaticImageData,
-    }
-}
+        img1: StaticImageData;
+        img2: StaticImageData;
+        img3: StaticImageData;
+        img4: StaticImageData;
+    };
+};
 
-async function Detailpageshop({ params }: { params: { id: string } }) {
+async function Detailpageshop({ params }: { params: Promise<{ id: string }> }) {
     // Await the params to access id
-    const { id } = await params; // Change this line
+    const { id } = await params; // Correctly await params
     const response = await fetch(`http://localhost:3000/api/products/${id}`, { cache: 'no-store' });
-    
+
     if (!response.ok) {
         throw new Error("Failed to fetch product data");
     }
-    
+
     const product: Data = await response.json();
     console.log("Data ==>", product);
 
-    
     return (
     <div>
         <Navbar/>
@@ -153,7 +151,7 @@ async function Detailpageshop({ params }: { params: { id: string } }) {
 
 
         <div>
-            <Realtedproducts/>
+            <Relatedproducts/>
         </div>
 
     </div>
