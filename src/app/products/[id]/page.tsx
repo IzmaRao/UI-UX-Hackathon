@@ -25,7 +25,7 @@ type Data = {
 };
 
 async function Detailpageshop({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = await params; // Await the params to access id
+    try {
     const response = await fetch(`https://ui-ux-hackathon-xi.vercel.app/api/products/${id}`, { cache: 'no-store' });
 
     if (!response.ok) {
@@ -34,6 +34,10 @@ async function Detailpageshop({ params }: { params: Promise<{ id: string }> }) {
 
     const product: Data = await response.json();
     console.log("Data ==>", product);
+} catch (error) {
+    console.error("Error fetching product data:", error);
+    // Handle the error appropriately, e.g., show an error message to the user
+}
     return (
     <div>
         <Navbar/>
