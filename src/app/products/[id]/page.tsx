@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
-import Image from 'next/image';
+import Image,{StaticImageData} from 'next/image';
 import { FaGreaterThan } from "react-icons/fa6";
 import stars from '../../../../public/Group 88.png';
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
@@ -12,21 +12,22 @@ import Relatedproducts from '../../../components/Relatedproducts';
 type Data = {
     id: number;
     name: string;
-    price: string; // Change to string to match the product data
-    image: string; // Change to string to match the product data
+    price: number;
+    image: StaticImageData;
     width: number;
     height: number;
     detailimg: {
-        img1: string; // Change to string
-        img2: string; // Change to string
-        img3: string; // Change to string
-        img4: string; // Change to string
+        img1: StaticImageData;
+        img2: StaticImageData;
+        img3: StaticImageData;
+        img4: StaticImageData;
     };
 };
 
 async function Detailpageshop({ params }: { params: Promise<{ id: string }> }) {
-    try {
-    const response = await fetch(`https://ui-ux-hackathon-xi.vercel.app/api/products/${id}`, { cache: 'no-store' });
+    // Await the params to access id
+    const { id } = await params; // Correctly await params
+    const response = await fetch(`http://localhost:3000/api/products/${id}`, { cache: 'no-store' });
 
     if (!response.ok) {
         throw new Error("Failed to fetch product data");
@@ -34,10 +35,7 @@ async function Detailpageshop({ params }: { params: Promise<{ id: string }> }) {
 
     const product: Data = await response.json();
     console.log("Data ==>", product);
-} catch (error) {
-    console.error("Error fetching product data:", error);
-    // Handle the error appropriately, e.g., show an error message to the user
-}
+
     return (
     <div>
         <Navbar/>
