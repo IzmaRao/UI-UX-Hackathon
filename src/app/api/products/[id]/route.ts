@@ -24,6 +24,9 @@ export async function GET(request: NextRequest, context: { params: Promise<{ id:
     const { id } = await context.params; // Await the params
     const productsId = parseInt(id, 10);
     const product = products.find((p) => p.id === productsId);
+    console.log("Received ID:", id);
+console.log("Parsed Product ID:", productsId);
+console.log("Found Product:", product);
 
     if (!product) {
         return NextResponse.json({ error: 'Product not found' }, { status: 404 });
