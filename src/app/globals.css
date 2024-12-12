@@ -18,6 +18,8 @@ body{
     align-items: center;
     display: relative;
     overflow-x: hidden;
+    position: relative;
+    z-index: 30;
 }
 .navbarlist{
     gap: 75px;
@@ -6054,7 +6056,8 @@ gap: 158px;
 justify-content: end;
 height: 100px;
 align-items: center;
-display: relative;
+position: relative;
+z-index: 30;
 }
 .navbarlist{
 gap: 75px;
@@ -6079,7 +6082,8 @@ width: 1000;
 height: 100px;
 width: screen;
 align-items: center;
-display: relative;
+position: relative;
+z-index: 30;
 overflow-x: hidden;
 }
 .navbarlist{
@@ -6104,7 +6108,8 @@ justify-content: space-between;
 height: 100px;
 width: 900;
 align-items: center;
-display: relative;
+position: relative;
+z-index: 30;
 }
 .navbarlist{
 gap: 65px;
@@ -6129,7 +6134,8 @@ justify-content: start;
 height: 90px;
 width: 800;
 align-items: center;
-display: relative;
+position: relative;
+z-index: 30;
 overflow-x: hidden;
 }
 .navbarlist{
@@ -6155,7 +6161,8 @@ justify-content: start;
 height: 100px;
 width: 700;
 align-items: center;
-display: relative;
+position: relative;
+z-index: 30;
 }
 .navbarlist{
 gap: 45px;
@@ -6179,7 +6186,8 @@ justify-content: start;
 height: 90px;
 width: 400;
 align-items: center;
-display: relative;
+position: relative;
+z-index: 30;
 overflow-x: hidden;
 }
 .navbarlist{
@@ -6219,7 +6227,9 @@ margin-left: 0px;
 gap: 20px !important;
 justify-content: space-around;
 height: 90px;
-width: ;
+width: 400;
+position: relative;
+z-index: 30;
 align-items: center;
 display: relative;
 }
@@ -6260,7 +6270,8 @@ gap: 20px !important;
 justify-content: space-around;
 height: 90px;
 align-items: center;
-display: relative;
+position: relative;
+z-index: 30;
 
 }
 .navbarlist{
