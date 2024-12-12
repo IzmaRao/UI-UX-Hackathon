@@ -17,7 +17,7 @@ interface Data{
 }
 
 async function Shop() {
-  const response = await fetch('http://localhost:3000/api/products/', { cache: "no-store"});
+  const response = await fetch('https://ui-ux-hackathon-xi.vercel.app/api/products/', { cache: "no-store"});
   const data: Data[] = await response.json();
   console.log("params ==>", data)
   return (
