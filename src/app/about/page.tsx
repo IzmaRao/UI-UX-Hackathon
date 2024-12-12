@@ -48,7 +48,7 @@ function page() {
               </div>
               <h2 className="blog-one-section-one-content-h font-medium">Going all-in with millennial design</h2>
               <p className="blog-one-section-one-content-p text-[#9F9F9F] ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc. In nulla posuere sollicitudin aliquam ultrices. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Libero enim sed faucibus turpis in. Cursus mattis molestie a iaculis at erat. Nibh cras pulvinar mattis nunc sed blandit libero. Pellentesque elit ullamcorper dignissim cras tincidunt. Pharetra et ultrices neque ornare aenean euismod elementum.</p>
-              <p className='blog-one-section-one-content-read  border-b-[1px] border-black w-[77] text-center pb-[6]'>Read more</p>
+              <span className='blog-one-section-one-content-read  border-b-[1px] border-black w-[77] text-center pb-[6]'>Read more</span>
             </div>
           </div>
 
@@ -69,7 +69,7 @@ function page() {
                 </div>
                 <div className="blog-one-section-one-content-icon">
                   <FaTag color='#9F9F9F' />
-                  <p className='text-[#9F9F9F]'>Wood</p>
+                  <span className='text-[#9F9F9F]'>Wood</span>
                 </div>
               </div>
               <h2 className="blog-one-section-one-content-h font-medium">Going all-in with millennial design</h2>
@@ -101,7 +101,7 @@ function page() {
               </div>
               <h2 className="blog-one-section-one-content-h font-medium">Going all-in with millennial design</h2>
               <p className="blog-one-section-one-content-p text-[#9F9F9F] ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo integer malesuada nunc. In nulla posuere sollicitudin aliquam ultrices. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Libero enim sed faucibus turpis in. Cursus mattis molestie a iaculis at erat. Nibh cras pulvinar mattis nunc sed blandit libero. Pellentesque elit ullamcorper dignissim cras tincidunt. Pharetra et ultrices neque ornare aenean euismod elementum.</p>
-              <p className='blog-one-section-one-content-read  border-b-[1px] border-black w-[77] text-center pb-[6]'>Read more</p>
+              <span className='blog-one-section-one-content-read  border-b-[1px] border-black w-[77] text-center pb-[6]'>Read more</span>
             </div>
           </div>
 
