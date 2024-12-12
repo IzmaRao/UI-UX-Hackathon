@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { FaGreaterThan } from "react-icons/fa6";
 import stars from '../../../../public/Group 88.png';
 import { FaFacebook, FaLinkedin } from "react-icons/fa";
@@ -12,15 +12,15 @@ import Relatedproducts from '../../../components/Relatedproducts';
 type Data = {
     id: number;
     name: string;
-    price: number;
-    image: StaticImageData;
+    price: string; // Change to string to match the product data
+    image: string; // Change to string to match the product data
     width: number;
     height: number;
     detailimg: {
-        img1: StaticImageData;
-        img2: StaticImageData;
-        img3: StaticImageData;
-        img4: StaticImageData;
+        img1: string; // Change to string
+        img2: string; // Change to string
+        img3: string; // Change to string
+        img4: string; // Change to string
     };
 };
 
