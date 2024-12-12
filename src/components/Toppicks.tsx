@@ -14,7 +14,7 @@ async function Toppicks() {
     let data: Data[] = [];
 
     try {
-        const response = await fetch('/api/toppicks'); // Use relative URL
+        const response = await fetch('https://ui-ux-hackathon-xi.vercel.app/api/toppicks'); // Use relative URL
         if (!response.ok) {
             throw new Error('Failed to fetch data');
         }
