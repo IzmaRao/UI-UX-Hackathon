@@ -57,7 +57,7 @@ async function Shop() {
 
             {data.map((product) => (
                 <div key={product.id} className='shop-section-two-item  ' >
-                <Link href={`https://ui-ux-hackathon-xi.vercel.app/products/${product.id}`}>
+                <Link href={`/products/${product.id}`}>
                     <div className='shop-section-two-item-one  bg-white '>
                         <Image height={product.height} width={product.width} src={product.image} alt="img"/>
                     </div>
