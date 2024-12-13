@@ -26,8 +26,8 @@ type Data = {
 
 async function Detailpageshop({ params }: { params: Promise<{ id: string }> }) {
     // Await the params to access id
-    const { id } = await params; // Correctly await params
-    const response = await fetch(`https://ui-ux-hackathon-xi.vercel.app/api/products/${id}`, { cache: 'no-store' });
+    const { id } = params; // Correctly await params
+    const response = await fetch(`/api/products/${id}`, { next: { revalidate: 60 } });
 
     if (!response.ok) {
         throw new Error("Failed to fetch product data");
