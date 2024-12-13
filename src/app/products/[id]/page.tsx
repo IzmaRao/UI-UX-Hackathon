@@ -10,32 +10,31 @@ import soffa2 from '../../../../public/Cloud sofa three seater + ottoman_1 1.png
 import Relatedproducts from '../../../components/Relatedproducts';
 
 type Data = {
-    id: number;
-    name: string;
-    price: number;
-    image: StaticImageData;
-    width: number;
-    height: number;
-    detailimg: {
-        img1: StaticImageData;
-        img2: StaticImageData;
-        img3: StaticImageData;
-        img4: StaticImageData;
-    };
+  id: number;
+  name: string;
+  price: string;
+  image: string; // Use string for dynamic image URLs
+  width: number;
+  height: number;
+  detailimg: {
+    img1: string;
+    img2: string;
+    img3: string;
+    img4: string;
+  };
 };
 
-async function Detailpageshop({ params }: { params: Promise<{ id: string }> }) {
-    // Await the params to access id
-    const { id } = await params; // Correctly await params
+async function Detailpageshop({ params }: { params: { id: string } }) {
+  const { id } = params;
+
+  try {
     const response = await fetch(`https://ui-ux-hackathon-xi.vercel.app/api/products/${id}`, { next: { revalidate: 60 } });
 
     if (!response.ok) {
-        throw new Error("Failed to fetch product data");
+      throw new Error(`Failed to fetch product data: ${response.status}`);
     }
 
     const product: Data = await response.json();
-    console.log("Data ==>", product);
-
     return (
     <div>
         <Navbar/>
