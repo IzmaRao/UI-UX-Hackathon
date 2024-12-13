@@ -19,18 +19,14 @@ const products = [
     { id: 16, name: "Outdoor sofa set", price: "244,000.00", image: "/Outdoor sofa set 1.png", width: 318, height: 211, detailimg: { img1: "/Outdoor sofa set 2.png", img2: "/Outdoor sofa set_2 1.png", img3: "/Stuart sofa 1.png", img4: "/Maya sofa three seater (1) 1.png" } }
 ];
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
-  const { id } = params;
-  const productsId = parseInt(id, 10);
-  const product = products.find((p) => p.id === productsId);
+export async function GET(request: NextRequest, context: { params: Promise<{ id: string }> }) {
+    const { id } = await context.params; // Await the params
+    const productsId = parseInt(id, 10);
+    const product = products.find((p) => p.id === productsId);
 
-  console.log("Received ID:", id);
-  console.log("Parsed Product ID:", productsId);
-  console.log("Found Product:", product);
+    if (!product) {
+        return NextResponse.json({ error: 'Product not found' }, { status: 404 });
+    }
 
-  if (!product) {
-    return NextResponse.json({ error: 'Product not found' }, { status: 404 });
-  }
-
-  return NextResponse.json(product);
+    return NextResponse.json(product);
 }
