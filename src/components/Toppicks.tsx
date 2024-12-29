@@ -21,7 +21,7 @@ function Toppicks() {
     useEffect(() => {
       const fetchProduct = async () => {
         try {
-          const response = await fetch(`https://ui-ux-hackathon-xi.vercel.app/api/products/`);
+          const response = await fetch(`https://ui-ux-hackathon-xi.vercel.app/api/toppicks/`);
           if(!response.ok) {
             throw new Error("Failed to fetch product data");
           }
