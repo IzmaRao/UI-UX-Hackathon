@@ -1,6 +1,6 @@
-
+'use client';
 import { StaticImageData } from 'next/image';
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 
@@ -13,10 +13,39 @@ interface Data{
     height: number
 }
 
-async function Realtedproducts() {
-    const response = await fetch('http://localhost:3000/api/toppicks/');
-    const data: Data[] = await response.json();
-    console.log("params ==>", data)
+function Realtedproducts() {
+    const [products, setProducts] = useState<Data[] | any>(String);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);  
+
+    useEffect(() => {
+      const fetchProduct = async () => {
+        try {
+          const response = await fetch(`http://localhost:3000/api/products/`);
+          if(!response.ok) {
+            throw new Error("Failed to fetch product data");
+          }
+          const data: Data[] = await response.json();
+          setProducts(data);
+        } 
+        catch (err: any) {
+          setError(err.message)
+        }
+        finally {
+          setLoading(false)
+        }
+  
+      };
+  
+      fetchProduct();
+    } );
+    if (loading) {
+      return <div className='loading'> Loading...</div>
+    }
+    
+    if (error) {
+      return <div>Error: {error}...</div>
+    }
 
   return (
     <div className='related bg-white'>
@@ -28,7 +57,7 @@ async function Realtedproducts() {
         
         <div className='related-section-two custom-xl:space-x-[40px] custom-lg:space-x-[40px] custom-md:space-x-[40px] custom-sm:space-x-[40px] custom-xs:space-x-[40px] custom-xxs:space-x-[20px] custom-tiny:space-x-[0px] custom-mini:space-x-[0px] '>
 
-            {data.map((product) => (
+            {products.map((product: Data) => (
                 <div key={product.id} className='related-section-two-item ' >
                     <div className='related-section-two-item-one bg-white '>
                         <Image height={product.height} width={product.width} src={product.image} alt="img"/>
