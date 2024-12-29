@@ -1,3 +1,5 @@
+'use client';
+
 import Navbar2 from '../../components/Navbar2'
 import Navbar from '../../components/Navbar'
 import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
@@ -6,7 +8,7 @@ import list from '../../../public/bi_view-list.png'
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import Productsafety from '../../components/Productsafety'
-
+import { useState, useEffect } from 'react';
 interface Data{
   id: number,
   name: string,
@@ -16,10 +18,42 @@ interface Data{
   height: number
 }
 
-async function Shop() {
-  const response = await fetch('https://ui-ux-hackathon-xi.vercel.app/api/products/', { cache: "no-store"});
-  const data: Data[] = await response.json();
-  console.log("params ==>", data)
+function Shop() {
+  const [products, setProducts] = useState<Data[] | any>(String);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null)  
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`https://ui-ux-hackathon-xi.vercel.app/api/products/`);
+        if(!response.ok) {
+          throw new Error("Failed to fetch product data");
+        }
+        const data: Data[] = await response.json();
+        setProducts(data);
+      } 
+      catch (err: any) {
+        setError(err.message)
+      }
+      finally {
+        setLoading(false)
+      }
+
+    };
+
+    fetchProduct();
+  } );
+  if (loading) {
+    return <div className='loading'> Loading...</div>
+  }
+  
+  if (error) {
+    return <div>Error: {error}...</div>
+  }
+
+
+
   return (
     <div>
       <div className='relative'>
@@ -55,9 +89,9 @@ async function Shop() {
 
       <div className='shop-section-two  space-y-[15px] mx-auto '>
 
-            {data.map((product) => (
+            {products.map((product: Data) => (
                 <div key={product.id} className='shop-section-two-item  ' >
-                <Link href={`/products/${product.id}`}>
+                <Link href={`./products/${product.id}`}>
                     <div className='shop-section-two-item-one  bg-white '>
                         <Image height={product.height} width={product.width} src={product.image} alt="img"/>
                     </div>
